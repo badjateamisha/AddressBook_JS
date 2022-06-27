@@ -98,9 +98,26 @@ class Contact{
 }
 
 try{
-    let contactObj = new Contact("Amisha","Jain","204,Royal Rohana,Chinchwad","Pune","MH","411033"," 91 9876543210","amisha@gmail.com");
+    let contactObj = new Contact("Amisha","Jain","204,Royal Rohana,Chinchwad","Pune","Maharashtra","411033"," 91 9876543210","amisha@gmail.com");
     console.log(contactObj.toString());
 }
 catch (ex){
     console.error(ex);
 }
+
+//UC3 Ability to add Contacts into Array
+
+let contactsArray = new Array();
+function AddContact(firstName,lastName,address,city,state,zip,phoneNumber,Email){
+    try{
+    let contactobject = new Contact(firstName,lastName,address,city,state,zip,phoneNumber,Email);
+    contactsArray.push(contactobject);
+    }
+    catch (ex){
+        console.error(ex);
+    }
+}
+AddContact("Aarvik","Kalburgi","75/4 Krishna nagar","Pimpri","Maharashtra","411033","91 7906552015","aarvik@gmail.com");
+AddContact("Disha","Jain","69,Defence colony","Abad","Maharashtra","431002","91 9815468789","disha@gmail.com");
+AddContact("Sagar","Kalburgi","78,Jhakar kati","Pune","Maharashtra","411033","91 9845612398","sagar@gmail.com");
+contactsArray.forEach(contactsDetails => console.log(contactsDetails.toString()));
