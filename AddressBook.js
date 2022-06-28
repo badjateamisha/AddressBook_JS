@@ -1,35 +1,4 @@
-//UC1 Ability to create a Address Book Contact with first and last names,address, city, state, zip, phone number and email...RG----
-// class Contact{
-//     firstName;
-//     lastName;
-//     address;
-//     city;
-//     state;
-//     zip;
-//     phoneNumber;
-//     eMail;
-
-//     constructor(...params){
-//         this.firstName = params[0];
-//         this.lastName = params[1];
-//         this.address = params[2];
-//         this.city = params[3];
-//         this.state = params[4];
-//         this.zip = params[5];
-//         this.phoneNumber = params[6];
-//         this.eMail = params[7];
-//     }
-
-//         toString(){
-//             return ("FullName: "+this.firstName+this.lastName+"|Full Address: "+this.address+","+this.city+","+this.state+","+this.zip+"|Phone: "+this.phoneNumber+ "|EMail: "+this.eMail);
-//         }
-// }
-//let contactObj = new Contact("Amisha","Jain","204,Royal Rohana,Chinchwad","Pune","MH",411033,9876543210,"amisha@gmail.com");
-//console.log(contactObj.toString());
-
-
-//UC2 Valid contact are added
-
+const prompt = require("prompt-sync")();
 let firstNamePattern = new RegExp('^[A-Z]{1}[a-z]{2,}$');
 let lastNamePattern = new RegExp('^[A-Z]{1}[a-z]{2,}$');
 let addressPattern = new RegExp('^[A-Za-z0-9 /,]{4,}$');
@@ -51,6 +20,7 @@ class Contact{
         this.phoneNumber = params[6];
         this.eMail = params[7];
     }
+    //UC2 Validating Person Details. RG---
     get firstName() {return this._firstName};
     set firstName(firstName){
         if (firstNamePattern.test(firstName)) this._firstName = firstName;
@@ -96,17 +66,7 @@ class Contact{
             return ("FullName: "+this.firstName+this.lastName+"|Full Address: "+this.address+","+this.city+","+this.state+","+this.zip+"|Phone: "+this.phoneNumber+ "|EMail: "+this.eMail);
         }
 }
-
-try{
-    let contactObj = new Contact("Amisha","Jain","204,Royal Rohana,Chinchwad","Pune","Maharashtra","411033"," 91 9876543210","amisha@gmail.com");
-    console.log(contactObj.toString());
-}
-catch (ex){
-    console.error(ex);
-}
-
 //UC3 Ability to add Contacts into Array
-
 let contactsArray = new Array();
 function AddContact(firstName,lastName,address,city,state,zip,phoneNumber,Email){
     try{
@@ -120,4 +80,61 @@ function AddContact(firstName,lastName,address,city,state,zip,phoneNumber,Email)
 AddContact("Aarvik","Kalburgi","75/4 Krishna nagar","Pimpri","Maharashtra","411033","91 7906552015","aarvik@gmail.com");
 AddContact("Disha","Jain","69,Defence colony","Abad","Maharashtra","431002","91 9815468789","disha@gmail.com");
 AddContact("Sagar","Kalburgi","78,Jhakar kati","Pune","Maharashtra","411033","91 9845612398","sagar@gmail.com");
-contactsArray.forEach(contactsDetails => console.log(contactsDetails.toString()));
+
+//UC4 Find and Edit Existing Contact
+function FindandEditContact(){
+    try{
+        let contactNameToBeEdited = prompt("Enter the name of the Contact you want to edit: ");
+        contactsArray.forEach(contactsDetails => {
+            if (contactsDetails.firstName == contactNameToBeEdited){
+                while(true){
+                let choice = parseInt(prompt("Enter choice of the Detail you want to edit:-\n1 1: First Name \n2: Last Name \n3: Address \n4: City \n5: State \n6: Zipcode \n7: Phone Number \n8: Email Address : \n9: Go Back"));
+                switch (choice){
+                    case 1:
+                        let newFN = prompt("Enter updated first name: ");
+                        contactsDetails.firstName = newFN;
+                        break;
+                    case 2:
+                        let newLN = prompt("Enter updated last name: ");
+                        contactsDetails.lastName = newLN;
+                        break;
+                    case 3:
+                        let newAddress = prompt("Enter updated address: ");
+                        contactsDetails.address = newAddress;
+                        break;
+                    case 4:
+                        let newCity = prompt("Enter updated city: ");
+                        contactsDetails.city = newCity;
+                        break;
+                    case 5:
+                        let newState = prompt("Enter updated state: ");
+                        contactsDetails.state = newState;
+                        break;
+                    case 6:
+                        let newZip = prompt("Enter updated zip: ");
+                        contactsDetails.zip = newZip;
+                        break;
+                    case 7:
+                        let newPhoneNo = prompt("Enter updated phone number: ");
+                        contactsDetails.phoneNumber = newPhoneNo;
+                        break;
+                    case 8:
+                        let newEmail = prompt("Enter updated email: ");
+                        contactsDetails.eMail = newEmail;
+                        break;
+                    case 9:
+                        return;
+                    default:
+                        console.log("Enter valid choice");
+                        break;
+                    }
+                }
+            }
+        });
+    }
+    catch(ex){
+        console.error(ex);
+    }
+}
+FindandEditContact();
+console.log(contactsArray);
