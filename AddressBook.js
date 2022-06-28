@@ -150,5 +150,9 @@ function DeletingContact(){
         console.error(ex);
     }
 }
-DeletingContact();
-console.log(contactsArray);
+//DeletingContact();
+//console.log(contactsArray);
+
+//UC6 Finding Number of Contacts 
+let noOfContacts = contactsArray.reduce((contactsDetails) => contactsDetails + 1,0);
+console.log("Number of Contacts = "+noOfContacts);
