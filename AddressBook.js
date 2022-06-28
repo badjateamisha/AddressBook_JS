@@ -136,5 +136,19 @@ function FindandEditContact(){
         console.error(ex);
     }
 }
-FindandEditContact();
+//FindandEditContact();
+console.log(contactsArray);
+
+//UC5 Deleting a Contact
+function DeletingContact(){
+    try{
+        let contactNameToBeDeleted = prompt("Enter the name of the Contact you want to delete: ");
+        const indexOfArray = contactsArray.findIndex((contactDetails)=> contactDetails.firstName == contactNameToBeDeleted);
+        contactsArray.splice(indexOfArray,1);
+    }
+    catch(ex){
+        console.error(ex);
+    }
+}
+DeletingContact();
 console.log(contactsArray);
