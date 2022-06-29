@@ -159,5 +159,12 @@ console.log("Number of Contacts = "+noOfContacts);
 
 //UC7 Preventing Duplicate Entries
 AddContact("Disha","Jain","69,Defence colony","Abad","Maharashtra","431002","91 9815468789","disha@gmail.com");
-
 console.log(contactsArray);
+
+//UC8 Seach Person by City or State
+function searchPersonByStateorCity(){
+    let cityorStateName = prompt("Enter City or State Name: ");
+    let contactCityStateArray = contactsArray.filter((contacts) => contacts.state == cityorStateName || contacts.city == cityorStateName);
+    console.log(contactCityStateArray);
+}
+searchPersonByStateorCity();
